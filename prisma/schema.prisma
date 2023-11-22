@@ -22,25 +22,37 @@ model AcademicSemester {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  students Student[]
+
   @@map("academic_semesters")
 }
 
 //academic_faculties model
 model AcademicFaculty {
-  id String @id @default(uuid())
+  id String @id @default(uuid()) //primary key
   title String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  academicDepartments AcademicDepartment[] //relation field (one to many)
+
+  students Student[]
+  faculties Faculty[]
 
   @@map("academic_faculties")
 }
 
 //academic_departments model
 model AcademicDepartment {
-  id String @id @default(uuid())
+  id String @id @default(uuid()) //primary key
   title String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  academicFaculty AcademicFaculty @relation(fields: [academicFacultyId], references: [id]) //relation field (many to one)
+  academicFacultyId String //foreign key
+
+  students Student[]
+  faculties Faculty[]
 
   @@map("academic_departments")
 }
@@ -60,6 +72,15 @@ model Student {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  academicSemester AcademicSemester @relation(fields: [academicSemesterId], references: [id])
+  academicSemesterId String
+
+  academicDepartment AcademicDepartment @relation(fields: [academicDepartmentId], references: [id])
+  academicDepartmentId String
+
+  academicFaculty AcademicFaculty @relation(fields: [academicFacultyId], references: [id])
+  academicFacultyId String
+
   @@map("students")
 }
 
@@ -78,6 +99,12 @@ model Faculty {
   designation String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  academicDepartment AcademicDepartment @relation(fields: [academicDepartmentId], references: [id])
+  academicDepartmentId String
+
+  academicFaculty AcademicFaculty @relation(fields: [academicFacultyId], references: [id])
+  academicFacultyId String
 
   @@map("faculties")
 }
