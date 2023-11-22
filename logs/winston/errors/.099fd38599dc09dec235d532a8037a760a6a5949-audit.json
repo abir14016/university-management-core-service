@@ -1,0 +1,20 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "C:\\PROGRAMMING HERO\\NEXT-LEVEL\\SQL-SUPERSTAR\\university-management-core-service\\logs\\winston\\errors\\.099fd38599dc09dec235d532a8037a760a6a5949-audit.json",
+    "files": [
+        {
+            "date": 1700638991658,
+            "name": "C:\\PROGRAMMING HERO\\NEXT-LEVEL\\SQL-SUPERSTAR\\university-management-core-service\\logs\\winston\\errors\\phu-2023-22-11-13-error.log",
+            "hash": "10bedf166e20b493454a13854dba3263706c63fe5ff0d70c3322e0a39530e9c7"
+        },
+        {
+            "date": 1700640331654,
+            "name": "C:\\PROGRAMMING HERO\\NEXT-LEVEL\\SQL-SUPERSTAR\\university-management-core-service\\logs\\winston\\errors\\phu-2023-22-11-14-error.log",
+            "hash": "fe6af0bd6fdc609d75437b2b013b7328e3834a1c56643e19edf8aeb2dfb7f219"
+        }
+    ],
+    "hashType": "sha256"
+}
