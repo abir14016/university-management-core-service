@@ -12,7 +12,10 @@ router.post(
   AcademicSemesterController.insertIntoDB
 );
 
-//route for getting all academic semesters
+//route for getting all academic semesters with pagination, searching, filtering and sorting
 router.get('/', AcademicSemesterController.getAllFromDB);
+
+//route for getting single academic semester by id
+router.get('/:id', AcademicSemesterController.getDataById);
 
 export const AcademicSemesterRoutes = router;
