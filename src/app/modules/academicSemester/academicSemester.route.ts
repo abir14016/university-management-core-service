@@ -12,4 +12,7 @@ router.post(
   AcademicSemesterController.insertIntoDB
 );
 
+//route for getting all academic semesters
+router.get('/', AcademicSemesterController.getAllFromDB);
+
 export const AcademicSemesterRoutes = router;
