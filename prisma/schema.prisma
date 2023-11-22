@@ -44,3 +44,21 @@ model AcademicDepartment {
 
   @@map("academic_departments")
 }
+
+//student model
+model Student {
+  id String @id @default(uuid())
+  studentId String
+  firstName String
+  lastName String
+  middleName String
+  profileImage String
+  email String
+  contactNo Int
+  gender String
+  bloodGroup String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("students")
+}
