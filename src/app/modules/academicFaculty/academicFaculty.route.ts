@@ -12,4 +12,7 @@ router.post(
   AcademicFacultyController.insertIntoDB
 );
 
+//route for getting all academic faculties
+router.get('/', AcademicFacultyController.getAllFromDB);
+
 export const AcademicFacultyRoutes = router;
