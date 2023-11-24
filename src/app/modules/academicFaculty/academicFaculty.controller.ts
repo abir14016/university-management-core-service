@@ -16,6 +16,18 @@ const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+//controller for getting all academic faculty
+const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
+  const result = await AcademicFacultyService.getAllFromDB();
+  sendResponse<AcademicFaculty[]>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'All Academic Faculty retrived !!',
+    data: result,
+  });
+});
+
 export const AcademicFacultyController = {
   insertIntoDB,
+  getAllFromDB,
 };
