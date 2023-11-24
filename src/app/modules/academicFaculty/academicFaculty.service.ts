@@ -12,6 +12,13 @@ const insertIntoDB = async (
   return result;
 };
 
+//service for getting all faculties
+const getAllFromDB = async () => {
+  const result = await prisma.academicFaculty.findMany();
+  return result;
+};
+
 export const AcademicFacultyService = {
   insertIntoDB,
+  getAllFromDB,
 };
