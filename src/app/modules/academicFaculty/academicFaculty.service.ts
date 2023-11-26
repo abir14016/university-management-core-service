@@ -1,5 +1,9 @@
 import { AcademicFaculty } from '@prisma/client';
+import { IGenericResponse } from '../../../interfaces/common';
+import { IPaginationOptions } from '../../../interfaces/pagination';
 import prisma from '../../../shared/prisma';
+import { paginationHelpers } from './../../../helpers/paginationHelper';
+import { IAcademicFacultyFilterRequest } from './academicFaculty.interface';
 
 //service for creating an academic faculty
 const insertIntoDB = async (
@@ -13,9 +17,25 @@ const insertIntoDB = async (
 };
 
 //service for getting all faculties
-const getAllFromDB = async () => {
-  const result = await prisma.academicFaculty.findMany();
-  return result;
+const getAllFromDB = async (
+  filters: IAcademicFacultyFilterRequest,
+  options: IPaginationOptions
+): Promise<IGenericResponse<AcademicFaculty[]>> => {
+  const { page, limit, skip } = paginationHelpers.calculatePagination(options);
+  const result = await prisma.academicFaculty.findMany({
+    skip,
+    take: limit,
+  });
+  const total = await prisma.academicFaculty.count();
+
+  return {
+    meta: {
+      page,
+      limit,
+      total,
+    },
+    data: result,
+  };
 };
 
 //service for getting single academic faculty by id
