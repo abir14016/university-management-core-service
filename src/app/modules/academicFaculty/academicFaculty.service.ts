@@ -1,8 +1,9 @@
-import { AcademicFaculty } from '@prisma/client';
+import { AcademicFaculty, Prisma } from '@prisma/client';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import prisma from '../../../shared/prisma';
 import { paginationHelpers } from './../../../helpers/paginationHelper';
+import { academicFacultySearchableFields } from './academicFaculty.constants';
 import { IAcademicFacultyFilterRequest } from './academicFaculty.interface';
 
 //service for creating an academic faculty
@@ -21,8 +22,29 @@ const getAllFromDB = async (
   filters: IAcademicFacultyFilterRequest,
   options: IPaginationOptions
 ): Promise<IGenericResponse<AcademicFaculty[]>> => {
+  const { searchTerm, ...filterData } = filters;
+  // eslint-disable-next-line no-console
+  console.log(filterData);
   const { page, limit, skip } = paginationHelpers.calculatePagination(options);
+
+  const andConditions = [];
+
+  if (searchTerm) {
+    andConditions.push({
+      OR: academicFacultySearchableFields.map(field => ({
+        [field]: {
+          contains: searchTerm,
+          mode: 'insensitive',
+        },
+      })),
+    });
+  }
+
+  const whereConditions: Prisma.AcademicFacultyWhereInput =
+    andConditions.length > 0 ? { AND: andConditions } : {};
+
   const result = await prisma.academicFaculty.findMany({
+    where: whereConditions,
     skip,
     take: limit,
   });
