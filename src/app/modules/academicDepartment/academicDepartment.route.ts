@@ -17,4 +17,4 @@ router.get('/', AcademicDepartmentController.getAllFromDB);
 // route for getting single academic department by id
 router.get('/:id', AcademicDepartmentController.getByIdFromDB);
 
-export const academicDepartmentRoutes = router;
+export const AcademicDepartmentRoutes = router;
