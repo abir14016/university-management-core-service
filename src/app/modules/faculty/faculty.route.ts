@@ -11,4 +11,7 @@ router.post(
   FacultyController.insertIntoDB
 );
 
+// route for getting all faculties with pagination, searching, filtering and sorting
+router.get('/', FacultyController.getAllFromDB);
+
 export const facultyRoutes = router;
