@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+//zod validation for insering a student into DB
 const create = z.object({
   body: z.object({
     studentId: z.string({
