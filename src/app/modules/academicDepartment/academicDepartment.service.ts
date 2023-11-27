@@ -97,7 +97,23 @@ const getAllFromDB = async (
   };
 };
 
+//service for getting single academic department by id
+const getByIdFromDB = async (
+  id: string
+): Promise<AcademicDepartment | null> => {
+  const result = await prisma.academicDepartment.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      academicFaculty: true,
+    },
+  });
+  return result;
+};
+
 export const AcademicDepartmentService = {
   insertIntoDB,
   getAllFromDB,
+  getByIdFromDB,
 };
