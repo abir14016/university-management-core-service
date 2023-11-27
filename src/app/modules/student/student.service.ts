@@ -98,7 +98,7 @@ const getAllFromDB = async (
   };
 };
 
-//service for etriving single student from DB
+//service for retriving single student from DB
 const getByIdFromDB = async (id: string): Promise<Student | null> => {
   const result = await prisma.student.findUnique({
     where: {
