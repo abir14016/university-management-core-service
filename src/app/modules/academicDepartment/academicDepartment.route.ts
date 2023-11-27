@@ -11,4 +11,7 @@ router.post(
   AcademicDepartmentController.insertIntoDB
 );
 
+// controller for retriving all academic departments with searching, filtering, pagination and sorting
+router.get('/', AcademicDepartmentController.getAllFromDB);
+
 export const academicDepartmentRoutes = router;
