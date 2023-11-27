@@ -14,4 +14,7 @@ router.post(
 // route for retriving all students with pagination, searching, filtering and sorting
 router.get('/', StudentController.getAllFromDB);
 
+// route for retriving single student from DB
+router.get('/:id', StudentController.getByIdFromDB);
+
 export const StudentRoutes = router;
