@@ -14,4 +14,7 @@ router.post(
 // route for getting all faculties with pagination, searching, filtering and sorting
 router.get('/', FacultyController.getAllFromDB);
 
+// route for getting single faculty by id
+router.get('/:id', FacultyController.getByIdFromDB);
+
 export const facultyRoutes = router;
