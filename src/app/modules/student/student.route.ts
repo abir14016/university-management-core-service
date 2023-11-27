@@ -11,4 +11,7 @@ router.post(
   StudentController.insertIntoDB
 );
 
+// route for retriving all students with pagination, searching, filtering and sorting
+router.get('/', StudentController.getAllFromDB);
+
 export const StudentRoutes = router;
