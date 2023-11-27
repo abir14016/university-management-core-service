@@ -14,4 +14,7 @@ router.post(
 // controller for retriving all academic departments with searching, filtering, pagination and sorting
 router.get('/', AcademicDepartmentController.getAllFromDB);
 
+// route for getting single academic department by id
+router.get('/:id', AcademicDepartmentController.getByIdFromDB);
+
 export const academicDepartmentRoutes = router;
