@@ -17,4 +17,11 @@ router.get('/', FacultyController.getAllFromDB);
 // route for getting single faculty by id
 router.get('/:id', FacultyController.getByIdFromDB);
 
+//route for updating a faculty
+router.patch(
+  '/:id',
+  validateRequest(FacultyValidation.update),
+  FacultyController.updateIntoDB
+);
+
 export const facultyRoutes = router;
