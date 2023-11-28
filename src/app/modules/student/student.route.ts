@@ -24,4 +24,7 @@ router.patch(
   StudentController.updateIntoDB
 );
 
+// route for deleting a student from DB
+router.delete('/:id', StudentController.deleteFromDB);
+
 export const StudentRoutes = router;
