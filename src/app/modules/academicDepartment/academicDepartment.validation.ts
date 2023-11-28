@@ -12,6 +12,15 @@ const create = z.object({
   }),
 });
 
+//zod validation for updating an academic department
+const update = z.object({
+  body: z.object({
+    title: z.string().optional(),
+    academicFacultyId: z.string().optional(),
+  }),
+});
+
 export const AcademicDepartmentValidation = {
   create,
+  update,
 };
