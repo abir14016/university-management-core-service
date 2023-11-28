@@ -21,4 +21,7 @@ router.get('/:id', AcademicFacultyController.getDataById);
 //route for updating an academic faculty
 router.patch('/:id', AcademicFacultyController.updateOneInDB);
 
+// route for deleting an academic faculty
+router.delete('/:id', AcademicFacultyController.deleteByIdFromDB);
+
 export const AcademicFacultyRoutes = router;
