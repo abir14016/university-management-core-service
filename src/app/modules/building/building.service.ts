@@ -89,9 +89,20 @@ const updateOneInDB = async (
   return result;
 };
 
+//service for deleting a building
+const deleteByIdFromDB = async (id: string): Promise<Building> => {
+  const result = await prisma.building.delete({
+    where: {
+      id,
+    },
+  });
+  return result;
+};
+
 export const BuildingService = {
   insertIntoDB,
   getAllFromDB,
   getByIdFromDB,
   updateOneInDB,
+  deleteByIdFromDB,
 };
