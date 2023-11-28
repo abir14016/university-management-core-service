@@ -25,4 +25,7 @@ router.patch(
   BuildingController.updateOneInDB
 );
 
+//route for deleting a building
+router.delete('/:id', BuildingController.deleteByIdFromDB);
+
 export const BuildingRoutes = router;
