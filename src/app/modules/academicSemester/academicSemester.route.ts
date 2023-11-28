@@ -25,4 +25,7 @@ router.patch(
   AcademicSemesterController.updateOneInDB
 );
 
+//route for deleting an academic semester by id
+router.delete('/:id', AcademicSemesterController.deleteByIdFromDB);
+
 export const AcademicSemesterRoutes = router;
