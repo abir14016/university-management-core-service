@@ -18,4 +18,11 @@ router.get('/', BuildingController.getAllFromDB);
 //route for getting single building by id
 router.get('/:id', BuildingController.getByIdFromDB);
 
+//route for updating a building
+router.patch(
+  '/:id',
+  validateRequest(BuildingValidations.update),
+  BuildingController.updateOneInDB
+);
+
 export const BuildingRoutes = router;

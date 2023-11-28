@@ -114,6 +114,11 @@
             "date": 1701190158692,
             "name": "C:\\PROGRAMMING HERO\\NEXT-LEVEL\\SQL-SUPERSTAR\\university-management-core-service\\logs\\winston\\successes\\phu-2023-28-11-22-success.log",
             "hash": "7d4e518398053111a9794119812fe483422492776c0d2e7c94004641da187727"
+        },
+        {
+            "date": 1701191037818,
+            "name": "C:\\PROGRAMMING HERO\\NEXT-LEVEL\\SQL-SUPERSTAR\\university-management-core-service\\logs\\winston\\successes\\phu-2023-28-11-23-success.log",
+            "hash": "8b93f545fe5bb7fe68697629470e3ebfdd4e8b78c606791beb2e8ccbffdc51d6"
         }
     ],
     "hashType": "sha256"
