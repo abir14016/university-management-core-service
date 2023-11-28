@@ -18,4 +18,7 @@ router.get('/', AcademicFacultyController.getAllFromDB);
 //route for getting single academic faculty
 router.get('/:id', AcademicFacultyController.getDataById);
 
+//route for updating an academic faculty
+router.patch('/:id', AcademicFacultyController.updateOneInDB);
+
 export const AcademicFacultyRoutes = router;
