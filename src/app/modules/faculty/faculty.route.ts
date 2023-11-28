@@ -24,4 +24,7 @@ router.patch(
   FacultyController.updateIntoDB
 );
 
+//route for deleting a faculty
+router.delete('/:id', FacultyController.deleteFromDB);
+
 export const facultyRoutes = router;
