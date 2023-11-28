@@ -75,8 +75,23 @@ const getByIdFromDB = async (id: string): Promise<Building | null> => {
   return result;
 };
 
+//service for updating a building
+const updateOneInDB = async (
+  id: string,
+  payload: Partial<Building>
+): Promise<Building> => {
+  const result = await prisma.building.update({
+    where: {
+      id,
+    },
+    data: payload,
+  });
+  return result;
+};
+
 export const BuildingService = {
   insertIntoDB,
   getAllFromDB,
   getByIdFromDB,
+  updateOneInDB,
 };
