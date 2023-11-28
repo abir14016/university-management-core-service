@@ -18,4 +18,11 @@ router.get('/', AcademicSemesterController.getAllFromDB);
 //route for getting single academic semester by id
 router.get('/:id', AcademicSemesterController.getDataById);
 
+//route for updating an academic semester by id
+router.patch(
+  '/:id',
+  validateRequest(AcademicSemesterValidation.update),
+  AcademicSemesterController.updateOneInDB
+);
+
 export const AcademicSemesterRoutes = router;
