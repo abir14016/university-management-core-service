@@ -95,7 +95,21 @@ const getAllFromDB = async (
   };
 };
 
+//service for getting single room by id
+const getByIdFromDB = async (id: string): Promise<Room | null> => {
+  const result = await prisma.room.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      building: true,
+    },
+  });
+  return result;
+};
+
 export const RoomService = {
   insertIntoDB,
   getAllFromDB,
+  getByIdFromDB,
 };
