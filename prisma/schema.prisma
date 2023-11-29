@@ -126,7 +126,6 @@ model Room {
   id String @id @default(uuid())
   roomNumber String
   floor String
-  title String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
