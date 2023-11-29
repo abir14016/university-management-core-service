@@ -15,4 +15,7 @@ router.post(
   RoomController.insertIntoDB
 );
 
+//route for getting all rooms with pagination, searching, filtering and sorting
+router.get('/', RoomController.getAllFromDB);
+
 export const RoomRoutes = router;
