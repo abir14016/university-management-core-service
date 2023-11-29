@@ -18,4 +18,7 @@ router.post(
 //route for getting all rooms with pagination, searching, filtering and sorting
 router.get('/', RoomController.getAllFromDB);
 
+//route for getting single room by id
+router.get('/:id', RoomController.getByIdFromDB);
+
 export const RoomRoutes = router;
