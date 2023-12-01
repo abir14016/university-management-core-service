@@ -43,8 +43,21 @@ const getByIdFromDB = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+//controller for updating single room by id
+const updateOneInDB = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await RoomService.updateOneInDB(id, req.body);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Room updated successfully !',
+    data: result,
+  });
+});
+
 export const RoomController = {
   insertIntoDB,
   getAllFromDB,
   getByIdFromDB,
+  updateOneInDB,
 };
