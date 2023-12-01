@@ -29,4 +29,11 @@ router.patch(
   RoomController.updateOneInDB
 );
 
+//route for deleting a room
+router.delete(
+  '/:id',
+  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
+  RoomController.deleteByIdFromDB
+);
+
 export const RoomRoutes = router;
