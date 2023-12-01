@@ -108,8 +108,24 @@ const getByIdFromDB = async (id: string): Promise<Room | null> => {
   return result;
 };
 
+//service for updating single room by id
+const updateOneInDB = async (
+  id: string,
+  payload: Partial<Room>
+): Promise<Room> => {
+  const result = await prisma.room.update({
+    where: {
+      id,
+    },
+    data: payload,
+  });
+
+  return result;
+};
+
 export const RoomService = {
   insertIntoDB,
   getAllFromDB,
   getByIdFromDB,
+  updateOneInDB,
 };
