@@ -21,4 +21,12 @@ router.get('/', RoomController.getAllFromDB);
 //route for getting single room by id
 router.get('/:id', RoomController.getByIdFromDB);
 
+//route for updating single room
+router.patch(
+  '/:id',
+  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
+  validateRequest(RoomValidation.update),
+  RoomController.updateOneInDB
+);
+
 export const RoomRoutes = router;
