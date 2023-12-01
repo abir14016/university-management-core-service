@@ -55,9 +55,22 @@ const updateOneInDB = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+//controller for deleting a room
+const deleteByIdFromDB = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await RoomService.deleteByIdFromDB(id);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Room deleted successfully',
+    data: result,
+  });
+});
+
 export const RoomController = {
   insertIntoDB,
   getAllFromDB,
   getByIdFromDB,
   updateOneInDB,
+  deleteByIdFromDB,
 };
