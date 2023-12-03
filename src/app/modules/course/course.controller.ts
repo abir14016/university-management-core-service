@@ -6,7 +6,7 @@ import { CourseService } from './course.service';
 
 //controller for creating a course
 const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
-  const result = await CourseService.inserIntoDB(req.body);
+  const result = await CourseService.insertIntoDB(req.body);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
