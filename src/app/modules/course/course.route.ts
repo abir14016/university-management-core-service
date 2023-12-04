@@ -21,6 +21,14 @@ router.get('/', CourseController.getAllFromDB);
 //route for getting single course by id
 router.get('/:id', CourseController.getByIdFromDB);
 
+//route for updating a course
+router.patch(
+  '/:id',
+  validateRequest(CourseValidation.update),
+  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
+  CourseController.updateOneInDB
+);
+
 //route for deleting a course
 router.delete(
   '/:id',
