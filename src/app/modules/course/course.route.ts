@@ -12,4 +12,7 @@ router.get('/', CourseController.getAllFromDB);
 //route for getting single course by id
 router.get('/:id', CourseController.getByIdFromDB);
 
+//route for deleting a course
+router.delete('/:id', CourseController.deleteByIdFromDB);
+
 export const CourseRoutes = router;
