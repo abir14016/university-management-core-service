@@ -9,8 +9,8 @@ const router = express.Router();
 //route for creating an academic department
 router.post(
   '/',
-  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
   validateRequest(AcademicDepartmentValidation.create),
+  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
   AcademicDepartmentController.insertIntoDB
 );
 
@@ -23,8 +23,8 @@ router.get('/:id', AcademicDepartmentController.getByIdFromDB);
 //route for updating an academic department
 router.patch(
   '/:id',
-  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
   validateRequest(AcademicDepartmentValidation.update),
+  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
   AcademicDepartmentController.updateOneInDB
 );
 

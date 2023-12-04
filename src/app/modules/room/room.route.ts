@@ -10,8 +10,8 @@ const router = express.Router();
 // route for creating a room
 router.post(
   '/',
-  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
   validateRequest(RoomValidation.create),
+  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
   RoomController.insertIntoDB
 );
 
@@ -24,8 +24,8 @@ router.get('/:id', RoomController.getByIdFromDB);
 //route for updating single room
 router.patch(
   '/:id',
-  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
   validateRequest(RoomValidation.update),
+  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
   RoomController.updateOneInDB
 );
 

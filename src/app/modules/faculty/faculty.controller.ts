@@ -44,10 +44,10 @@ const getByIdFromDB = catchAsync(async (req: Request, res: Response) => {
 });
 
 //controller for updating a faculty
-const updateIntoDB = catchAsync(async (req: Request, res: Response) => {
+const updateOneInDB = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const payload = req.body;
-  const result = await FacultyService.updateIntoDB(id, payload);
+  const result = await FacultyService.updateOneInDB(id, payload);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
@@ -57,9 +57,9 @@ const updateIntoDB = catchAsync(async (req: Request, res: Response) => {
 });
 
 //controller for deleting a faculty
-const deleteFromDB = catchAsync(async (req: Request, res: Response) => {
+const deleteByIdFromDB = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
-  const result = await FacultyService.deleteFromDB(id);
+  const result = await FacultyService.deleteByIdFromDB(id);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
@@ -72,6 +72,6 @@ export const FacultyController = {
   insertIntoDB,
   getAllFromDB,
   getByIdFromDB,
-  updateIntoDB,
-  deleteFromDB,
+  updateOneInDB,
+  deleteByIdFromDB,
 };

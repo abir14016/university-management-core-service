@@ -33,8 +33,8 @@ const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
 });
 
 //controller for getting single academic faculty by id
-const getDataById = catchAsync(async (req: Request, res: Response) => {
-  const result = await AcademicFacultyService.getDataById(req.params.id);
+const getByIdFromDB = catchAsync(async (req: Request, res: Response) => {
+  const result = await AcademicFacultyService.getByIdFromDB(req.params.id);
   sendResponse<AcademicFaculty>(res, {
     statusCode: httpStatus.OK,
     success: true,
@@ -70,7 +70,7 @@ const deleteByIdFromDB = catchAsync(async (req: Request, res: Response) => {
 export const AcademicFacultyController = {
   insertIntoDB,
   getAllFromDB,
-  getDataById,
+  getByIdFromDB,
   updateOneInDB,
   deleteByIdFromDB,
 };

@@ -9,8 +9,8 @@ const router = express.Router();
 // route for inserting a faculty into DB
 router.post(
   '/',
-  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
   validateRequest(FacultyValidation.create),
+  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
   FacultyController.insertIntoDB
 );
 
@@ -23,16 +23,16 @@ router.get('/:id', FacultyController.getByIdFromDB);
 //route for updating a faculty
 router.patch(
   '/:id',
-  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
   validateRequest(FacultyValidation.update),
-  FacultyController.updateIntoDB
+  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
+  FacultyController.updateOneInDB
 );
 
 //route for deleting a faculty
 router.delete(
   '/:id',
   auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
-  FacultyController.deleteFromDB
+  FacultyController.deleteByIdFromDB
 );
 
-export const facultyRoutes = router;
+export const FacultyRoutes = router;

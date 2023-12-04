@@ -10,8 +10,8 @@ const router = express.Router();
 //route for creating an academic faculty
 router.post(
   '/',
-  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
   validateRequest(AcademicFacultyValidation.create),
+  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
   AcademicFacultyController.insertIntoDB
 );
 
@@ -19,13 +19,13 @@ router.post(
 router.get('/', AcademicFacultyController.getAllFromDB);
 
 //route for getting single academic faculty
-router.get('/:id', AcademicFacultyController.getDataById);
+router.get('/:id', AcademicFacultyController.getByIdFromDB);
 
 //route for updating an academic faculty
 router.patch(
   '/:id',
-  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
   validateRequest(AcademicFacultyValidation.update),
+  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
   AcademicFacultyController.updateOneInDB
 );
 

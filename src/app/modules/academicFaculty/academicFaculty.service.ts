@@ -78,7 +78,7 @@ const getAllFromDB = async (
 };
 
 //service for getting single academic faculty by id
-const getDataById = async (id: string): Promise<AcademicFaculty | null> => {
+const getByIdFromDB = async (id: string): Promise<AcademicFaculty | null> => {
   const result = await prisma.academicFaculty.findUnique({
     where: {
       id,
@@ -115,7 +115,7 @@ const deleteByIdFromDB = async (id: string): Promise<AcademicFaculty> => {
 export const AcademicFacultyService = {
   insertIntoDB,
   getAllFromDB,
-  getDataById,
+  getByIdFromDB,
   updateOneInDB,
   deleteByIdFromDB,
 };

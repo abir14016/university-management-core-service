@@ -34,8 +34,8 @@ const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
 });
 
 //controller for getting single academic semester by id
-const getDataById = catchAsync(async (req: Request, res: Response) => {
-  const result = await AcademicSemesterService.getDataById(req.params.id);
+const getByIdFromDB = catchAsync(async (req: Request, res: Response) => {
+  const result = await AcademicSemesterService.getByIdFromDB(req.params.id);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
@@ -71,7 +71,7 @@ const deleteByIdFromDB = catchAsync(async (req: Request, res: Response) => {
 export const AcademicSemesterController = {
   insertIntoDB,
   getAllFromDB,
-  getDataById,
+  getByIdFromDB,
   updateOneInDB,
   deleteByIdFromDB,
 };

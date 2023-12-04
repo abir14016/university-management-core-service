@@ -10,8 +10,8 @@ const router = express.Router();
 //route for creating an academic semester
 router.post(
   '/',
-  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
   validateRequest(AcademicSemesterValidation.create),
+  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
   AcademicSemesterController.insertIntoDB
 );
 
@@ -19,13 +19,13 @@ router.post(
 router.get('/', AcademicSemesterController.getAllFromDB);
 
 //route for getting single academic semester by id
-router.get('/:id', AcademicSemesterController.getDataById);
+router.get('/:id', AcademicSemesterController.getByIdFromDB);
 
 //route for updating an academic semester by id
 router.patch(
   '/:id',
-  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
   validateRequest(AcademicSemesterValidation.update),
+  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
   AcademicSemesterController.updateOneInDB
 );
 
