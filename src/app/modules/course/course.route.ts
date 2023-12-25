@@ -39,4 +39,6 @@ router.delete(
 //route for assigning faculties into a course
 router.post('/:id/assign-faculties', CourseController.assignFaculties);
 
+//route for removing faculty/faculties from a course
+router.delete('/:id/remove-faculties', CourseController.removeFaculties);
 export const CourseRoutes = router;
