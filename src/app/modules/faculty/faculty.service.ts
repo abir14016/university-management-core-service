@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Faculty, Prisma } from '@prisma/client';
+import { CourseFaculty, Faculty, Prisma } from '@prisma/client';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
@@ -142,10 +142,35 @@ const deleteByIdFromDB = async (id: string): Promise<Faculty> => {
   return result;
 };
 
+//service for assigning course/courses for a faculty
+const assignCourses = async (
+  id: string,
+  payload: string[]
+): Promise<CourseFaculty[]> => {
+  await prisma.courseFaculty.createMany({
+    data: payload.map(courseId => ({
+      facultyId: id,
+      courseId: courseId,
+    })),
+  });
+
+  const assignCoursesData = await prisma.courseFaculty.findMany({
+    where: {
+      facultyId: id,
+    },
+    include: {
+      course: true,
+    },
+  });
+
+  return assignCoursesData;
+};
+
 export const FacultyService = {
   insertIntoDB,
   getAllFromDB,
   getByIdFromDB,
   updateOneInDB,
   deleteByIdFromDB,
+  assignCourses,
 };
