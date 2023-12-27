@@ -68,10 +68,23 @@ const deleteByIdFromDB = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+//controller for assigning course/courses for a faculty
+const assignCourses = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await FacultyService.assignCourses(id, req.body.courses);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Course faculty assigned successfully',
+    data: result,
+  });
+});
+
 export const FacultyController = {
   insertIntoDB,
   getAllFromDB,
   getByIdFromDB,
   updateOneInDB,
   deleteByIdFromDB,
+  assignCourses,
 };
