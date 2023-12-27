@@ -60,7 +60,17 @@ const update = z.object({
   }),
 });
 
+//zod validation for assign or remove course/courses
+const assignOrRemoveCourses = z.object({
+  body: z.object({
+    courses: z.array(z.string(), {
+      required_error: 'Courses are required',
+    }),
+  }),
+});
+
 export const FacultyValidation = {
   create,
   update,
+  assignOrRemoveCourses,
 };
