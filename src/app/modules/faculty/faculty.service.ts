@@ -166,6 +166,32 @@ const assignCourses = async (
   return assignCoursesData;
 };
 
+//service for removing course/courses for a faculty
+const removeCourses = async (
+  id: string,
+  payload: string[]
+): Promise<CourseFaculty[] | null> => {
+  await prisma.courseFaculty.deleteMany({
+    where: {
+      facultyId: id,
+      courseId: {
+        in: payload,
+      },
+    },
+  });
+
+  const assignCoursesData = await prisma.courseFaculty.findMany({
+    where: {
+      facultyId: id,
+    },
+    include: {
+      course: true,
+    },
+  });
+
+  return assignCoursesData;
+};
+
 export const FacultyService = {
   insertIntoDB,
   getAllFromDB,
@@ -173,4 +199,5 @@ export const FacultyService = {
   updateOneInDB,
   deleteByIdFromDB,
   assignCourses,
+  removeCourses,
 };
