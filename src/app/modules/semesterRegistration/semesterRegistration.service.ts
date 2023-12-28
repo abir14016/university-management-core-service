@@ -120,7 +120,23 @@ const getAllFromDB = async (
   };
 };
 
+//service for getting single semester registration by ID
+const getByIdFromDB = async (
+  id: string
+): Promise<SemesterRegistration | null> => {
+  const result = await prisma.semesterRegistration.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      academicSemester: true,
+    },
+  });
+  return result;
+};
+
 export const SemesterRegistrationService = {
   insertIntoDB,
   getAllFromDB,
+  getByIdFromDB,
 };
