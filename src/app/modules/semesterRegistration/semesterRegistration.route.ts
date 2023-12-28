@@ -21,6 +21,14 @@ router.get('/', SemesterRegistrationController.getAllFromDB);
 //route for getting single semester registration by ID
 router.get('/:id', SemesterRegistrationController.getByIdFromDB);
 
+// route for updating a semester registration
+router.patch(
+  '/:id',
+  validateRequest(SemesterRegistrationValidation.update),
+  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  SemesterRegistrationController.updateOneInDB
+);
+
 //route for deleting a semester registration
 router.delete(
   '/:id',
