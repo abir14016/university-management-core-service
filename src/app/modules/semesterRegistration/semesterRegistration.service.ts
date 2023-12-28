@@ -135,8 +135,22 @@ const getByIdFromDB = async (
   return result;
 };
 
+//service for deleting a semester registration
+const deleteByIdFromDB = async (id: string): Promise<SemesterRegistration> => {
+  const result = await prisma.semesterRegistration.delete({
+    where: {
+      id,
+    },
+    include: {
+      academicSemester: true,
+    },
+  });
+  return result;
+};
+
 export const SemesterRegistrationService = {
   insertIntoDB,
   getAllFromDB,
   getByIdFromDB,
+  deleteByIdFromDB,
 };
