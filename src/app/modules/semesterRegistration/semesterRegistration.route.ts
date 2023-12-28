@@ -12,4 +12,7 @@ router.get('/', SemesterRegistrationController.getAllFromDB);
 //route for getting single semester registration by ID
 router.get('/:id', SemesterRegistrationController.getByIdFromDB);
 
+//route for deleting a semester registration
+router.delete('/:id', SemesterRegistrationController.deleteByIdFromDB);
+
 export const SemesterRegistrationRoutes = router;
