@@ -34,7 +34,20 @@ const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+//controller for getting single semester registration by ID
+const getByIdFromDB = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await SemesterRegistrationService.getByIdFromDB(id);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'SemesterRegistration fetched successfully',
+    data: result,
+  });
+});
+
 export const SemesterRegistrationController = {
   insertIntoDB,
   getAllFromDB,
+  getByIdFromDB,
 };
