@@ -29,6 +29,11 @@
             "date": 1703719669477,
             "name": "C:\\PROGRAMMING HERO\\NEXT-LEVEL\\SQL-SUPERSTAR\\university-management-core-service\\logs\\winston\\errors\\phu-2023-28-12-05-error.log",
             "hash": "e96045a0c8b9f5e7334110759c01f65c390cafa5beb997dc06681f2cd28485fc"
+        },
+        {
+            "date": 1703721740595,
+            "name": "C:\\PROGRAMMING HERO\\NEXT-LEVEL\\SQL-SUPERSTAR\\university-management-core-service\\logs\\winston\\errors\\phu-2023-28-12-06-error.log",
+            "hash": "d3a22adcc8aee6825c1de5f099fb83cbb5c68f3dffabf8540cc24fd571726746"
         }
     ],
     "hashType": "sha256"

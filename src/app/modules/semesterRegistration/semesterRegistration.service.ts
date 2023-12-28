@@ -1,6 +1,7 @@
 import { SemesterRegistration } from '@prisma/client';
 import prisma from '../../../shared/prisma';
 
+//service for creating semester registration
 const insertIntoDB = async (
   data: SemesterRegistration
 ): Promise<SemesterRegistration> => {

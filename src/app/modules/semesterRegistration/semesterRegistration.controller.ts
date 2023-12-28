@@ -6,7 +6,7 @@ import { SemesterRegistrationService } from './semesterRegistration.service';
 
 //controller for creating semester registration
 const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
-  const result = SemesterRegistrationService.insertIntoDB(req.body);
+  const result = await SemesterRegistrationService.insertIntoDB(req.body);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
