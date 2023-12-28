@@ -9,4 +9,7 @@ router.post('/', SemesterRegistrationController.insertIntoDB);
 //route for retriving all semester registration with pagination, searching, filtering & sorting
 router.get('/', SemesterRegistrationController.getAllFromDB);
 
+//route for getting single semester registration by ID
+router.get('/:id', SemesterRegistrationController.getByIdFromDB);
+
 export const SemesterRegistrationRoutes = router;
