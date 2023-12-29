@@ -3,6 +3,7 @@ import prisma from '../../../shared/prisma';
 import { asyncForEach } from '../../../shared/utils';
 import { ICreateOfferedCourse } from './offeredCourse.interface';
 
+//service for creating offred course
 const insertIntoDB = async (
   data: ICreateOfferedCourse
 ): Promise<OfferedCourse[]> => {
