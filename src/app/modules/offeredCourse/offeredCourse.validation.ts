@@ -19,6 +19,6 @@ const create = z.object({
   }),
 });
 
-export const OfferedCourseValidations = {
+export const OfferedCourseValidation = {
   create,
 };
