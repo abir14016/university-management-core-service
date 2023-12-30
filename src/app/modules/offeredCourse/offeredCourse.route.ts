@@ -29,4 +29,11 @@ router.patch(
   OfferedCourseController.updateOneInDB
 );
 
+//route for deleting offeredCourse
+router.delete(
+  '/:id',
+  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  OfferedCourseController.deleteByIdFromDB
+);
+
 export const OfferedCourseRoutes = router;
