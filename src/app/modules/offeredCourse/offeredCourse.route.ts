@@ -21,4 +21,12 @@ router.get('/', OfferedCourseController.getAllFromDB);
 //route for getting single offeredCourse by id
 router.get('/:id', OfferedCourseController.getByIdFromDB);
 
+//route for updating offeredCourse
+router.patch(
+  '/:id',
+  validateRequest(OfferedCourseValidation.update),
+  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  OfferedCourseController.updateOneInDB
+);
+
 export const OfferedCourseRoutes = router;
