@@ -34,7 +34,20 @@ const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+//controller for retriving single offeredCourseSection
+const getByIdFromDB = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await OfferedCourseSectionService.getByIdFromDB(id);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'OfferedCourseSection fetched successfully',
+    data: result,
+  });
+});
+
 export const OfferedCourseSectionController = {
   insertIntoDB,
   getAllFromDB,
+  getByIdFromDB,
 };
