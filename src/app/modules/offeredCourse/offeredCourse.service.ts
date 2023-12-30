@@ -126,7 +126,23 @@ const getAllFromDB = async (
   };
 };
 
+//service for getting single offeredCourse by id
+const getByIdFromDB = async (id: string): Promise<OfferedCourse | null> => {
+  const result = await prisma.offeredCourse.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      semesterRegistration: true,
+      course: true,
+      academicDepartment: true,
+    },
+  });
+  return result;
+};
+
 export const offeredCourseService = {
   insertIntoDB,
   getAllFromDB,
+  getByIdFromDB,
 };
