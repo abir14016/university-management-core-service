@@ -15,4 +15,7 @@ router.post(
   OfferedCourseController.insertIntoDB
 );
 
+// route for getting all offred course with pagination, searching, filtering & sorting
+router.get('/', OfferedCourseController.getAllFromDB);
+
 export const OfferedCourseRoutes = router;
