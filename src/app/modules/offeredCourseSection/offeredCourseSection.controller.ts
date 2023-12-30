@@ -58,9 +58,22 @@ const updateOneInDB = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+//controller for deleting offeredCourseSection
+const deleteByIdFromDB = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await OfferedCourseSectionService.deleteByIdFromDB(id);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'OfferedCourseSection deleted successfully',
+    data: result,
+  });
+});
+
 export const OfferedCourseSectionController = {
   insertIntoDB,
   getAllFromDB,
   getByIdFromDB,
   updateOneInDB,
+  deleteByIdFromDB,
 };
