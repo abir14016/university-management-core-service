@@ -18,4 +18,7 @@ router.post(
 // route for getting all offred course with pagination, searching, filtering & sorting
 router.get('/', OfferedCourseController.getAllFromDB);
 
+//route for getting single offeredCourse by id
+router.get('/:id', OfferedCourseController.getByIdFromDB);
+
 export const OfferedCourseRoutes = router;
