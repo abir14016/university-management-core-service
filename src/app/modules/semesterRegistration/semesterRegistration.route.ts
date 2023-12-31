@@ -15,7 +15,7 @@ router.post(
   SemesterRegistrationController.insertIntoDB
 );
 
-//route for creating student semester gegistration
+//route for creating student semester registration
 router.post(
   '/start-registration',
   auth(ENUM_USER_ROLE.STUDENT),
