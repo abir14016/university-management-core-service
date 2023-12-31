@@ -12,4 +12,7 @@ router.get('/', OfferedCourseClassScheduleController.getAllFromDB);
 //route for getting single offeredCourseClassSchedule
 router.get('/:id', OfferedCourseClassScheduleController.getByIdFromDB);
 
+//route for updating offeredCourseClassSchedule
+router.patch('/:id', OfferedCourseClassScheduleController.updateOneInDB);
+
 export const OfferedCourseClassScheduleRoutes = router;
