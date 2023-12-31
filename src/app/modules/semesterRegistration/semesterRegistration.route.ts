@@ -15,6 +15,13 @@ router.post(
   SemesterRegistrationController.insertIntoDB
 );
 
+//route for creating student semester gegistration
+router.post(
+  '/start-registration',
+  auth(ENUM_USER_ROLE.STUDENT),
+  SemesterRegistrationController.startMyRegistration
+);
+
 //route for retriving all semester registration with pagination, searching, filtering & sorting
 router.get('/', SemesterRegistrationController.getAllFromDB);
 
