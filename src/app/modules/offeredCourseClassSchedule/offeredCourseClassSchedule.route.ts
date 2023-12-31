@@ -9,4 +9,7 @@ router.post('/', OfferedCourseClassScheduleController.insertIntoDB);
 //route for getting all offeredCourseClassSchedule with pagination, searching, filtering & sorting
 router.get('/', OfferedCourseClassScheduleController.getAllFromDB);
 
+//route for getting single offeredCourseClassSchedule
+router.get('/:id', OfferedCourseClassScheduleController.getByIdFromDB);
+
 export const OfferedCourseClassScheduleRoutes = router;
