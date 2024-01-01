@@ -22,6 +22,13 @@ router.post(
   SemesterRegistrationController.startMyRegistration
 );
 
+//route for unrolling into a course [for student]
+router.post(
+  '/enroll-into-course',
+  auth(ENUM_USER_ROLE.STUDENT),
+  SemesterRegistrationController.enrollIntoCourse
+);
+
 //route for retriving all semester registration with pagination, searching, filtering & sorting
 router.get('/', SemesterRegistrationController.getAllFromDB);
 

@@ -16,7 +16,10 @@ import {
   semesterRegistrationRelationalFieldsMapper,
   semesterRegistrationSearchableFields,
 } from './semesterRegistration.constants';
-import { ISemesterRegistrationFilterRequest } from './semesterRegistration.interface';
+import {
+  IEnrollCoursePayload,
+  ISemesterRegistrationFilterRequest,
+} from './semesterRegistration.interface';
 
 //service for creating semester registration
 const insertIntoDB = async (
@@ -269,6 +272,69 @@ const startMyRegistration = async (
   };
 };
 
+//service for enrolling into a course [for student]
+const enrollIntoCourse = async (
+  authUserId: string,
+  payload: IEnrollCoursePayload
+) => {
+  const student = await prisma.student.findFirst({
+    where: {
+      studentId: authUserId,
+    },
+  });
+
+  const semesterRegistration = await prisma.semesterRegistration.findFirst({
+    where: {
+      status: SemesterRegistrationStatus.ONGOING,
+    },
+  });
+
+  const offeredCourse = await prisma.offeredCourse.findFirst({
+    where: {
+      id: payload.offeredCourseId,
+    },
+  });
+
+  const offeredCourseSection = await prisma.offeredCourseSection.findFirst({
+    where: {
+      id: payload.offeredCourseSectionId,
+    },
+  });
+
+  if (!student) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Student not found !');
+  }
+
+  if (!semesterRegistration) {
+    throw new ApiError(
+      httpStatus.NOT_FOUND,
+      'Semester registration not found !'
+    );
+  }
+
+  if (!offeredCourse) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Offered course not found !');
+  }
+
+  if (!offeredCourseSection) {
+    throw new ApiError(
+      httpStatus.NOT_FOUND,
+      'Offered Course Section not found !'
+    );
+  }
+
+  const enrollCourse = await prisma.studentSemesterRegistrationCourse.create({
+    data: {
+      studentId: student?.id,
+      semesterRegistrationId: semesterRegistration?.id,
+      offeredCourseId: payload.offeredCourseId,
+      offeredCourseSectionId: payload.offeredCourseSectionId,
+    },
+  });
+
+  return enrollCourse;
+};
+
 export const SemesterRegistrationService = {
   insertIntoDB,
   getAllFromDB,
@@ -276,4 +342,5 @@ export const SemesterRegistrationService = {
   updateOneInDB,
   deleteByIdFromDB,
   startMyRegistration,
+  enrollIntoCourse,
 };

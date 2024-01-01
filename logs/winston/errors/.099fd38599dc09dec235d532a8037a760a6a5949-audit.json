@@ -94,6 +94,16 @@
             "date": 1704022982274,
             "name": "C:\\PROGRAMMING HERO\\NEXT-LEVEL\\SQL-SUPERSTAR\\university-management-core-service\\logs\\winston\\errors\\phu-2023-31-12-17-error.log",
             "hash": "00327e46b5fa2535d00d85919509a12e112182ffa8655bf008bde7f5c871e58f"
+        },
+        {
+            "date": 1704025476973,
+            "name": "C:\\PROGRAMMING HERO\\NEXT-LEVEL\\SQL-SUPERSTAR\\university-management-core-service\\logs\\winston\\errors\\phu-2023-31-12-18-error.log",
+            "hash": "fb11d6012766f28b4b0ed151dd3c2edc8e115bca5298bbfbdf01e72e67168745"
+        },
+        {
+            "date": 1704082838636,
+            "name": "C:\\PROGRAMMING HERO\\NEXT-LEVEL\\SQL-SUPERSTAR\\university-management-core-service\\logs\\winston\\errors\\phu-2024-01-01-10-error.log",
+            "hash": "0709e2245035e745963ed5b9636ca70921119ab6db2e8a5d3d55b2f5d34df44e"
         }
     ],
     "hashType": "sha256"
