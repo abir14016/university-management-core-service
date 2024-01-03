@@ -7,6 +7,13 @@ import { SemesterRegistrationController } from './semesterRegistration.controlle
 
 const router = express.Router();
 
+//route for retriving student registration [for student]
+router.get(
+  '/get-my-registration',
+  auth(ENUM_USER_ROLE.STUDENT),
+  SemesterRegistrationController.getMyRegistration
+);
+
 //route for creating semester registration
 router.post(
   '/',
