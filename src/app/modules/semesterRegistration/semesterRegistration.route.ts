@@ -46,6 +46,7 @@ router.delete(
 //route for unrolling into a course [for student]
 router.post(
   '/enroll-into-course',
+  validateRequest(SemesterRegistrationValidation.enrollOrWithdrawCourse),
   auth(ENUM_USER_ROLE.STUDENT),
   SemesterRegistrationController.enrollIntoCourse
 );
@@ -53,6 +54,7 @@ router.post(
 //route for withdrawing from a course [for student]
 router.post(
   '/withdraw-from-course',
+  validateRequest(SemesterRegistrationValidation.enrollOrWithdrawCourse),
   auth(ENUM_USER_ROLE.STUDENT),
   SemesterRegistrationController.withdrawFromCourse
 );
