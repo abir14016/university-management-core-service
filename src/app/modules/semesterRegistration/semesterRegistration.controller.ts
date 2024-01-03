@@ -95,7 +95,7 @@ const enrollIntoCourse = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Student enrolled into Course enrolled successfully',
+    message: 'Student enrolled into course successfully',
     data: result,
   });
 });
@@ -110,7 +110,7 @@ const withdrawFromCourse = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Student withdraw from Course enrolled successfully',
+    message: 'Student withdraw from course successfully',
     data: result,
   });
 });

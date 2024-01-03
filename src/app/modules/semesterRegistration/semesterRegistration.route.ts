@@ -22,13 +22,6 @@ router.post(
   SemesterRegistrationController.startMyRegistration
 );
 
-//route for unrolling into a course [for student]
-router.post(
-  '/enroll-into-course',
-  auth(ENUM_USER_ROLE.STUDENT),
-  SemesterRegistrationController.enrollIntoCourse
-);
-
 //route for retriving all semester registration with pagination, searching, filtering & sorting
 router.get('/', SemesterRegistrationController.getAllFromDB);
 
@@ -48,6 +41,20 @@ router.delete(
   '/:id',
   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
   SemesterRegistrationController.deleteByIdFromDB
+);
+
+//route for unrolling into a course [for student]
+router.post(
+  '/enroll-into-course',
+  auth(ENUM_USER_ROLE.STUDENT),
+  SemesterRegistrationController.enrollIntoCourse
+);
+
+//route for withdrawing from a course [for student]
+router.post(
+  '/withdraw-from-course',
+  auth(ENUM_USER_ROLE.STUDENT),
+  SemesterRegistrationController.withdrawFromCourse
 );
 
 export const SemesterRegistrationRoutes = router;
