@@ -398,9 +398,13 @@ const getMyRegistration = async (authUserId: string) => {
 };
 
 //service for starting new semester [for admin]
-const startNewSemester = async (id: string) => {
+const startNewSemester = async (
+  id: string
+): Promise<{
+  message: string;
+}> => {
   //finding semesterRegistration by params id
-  const semseterRegistration = await prisma.semesterRegistration.findUnique({
+  const semesterRegistration = await prisma.semesterRegistration.findUnique({
     where: {
       id,
     },
@@ -410,7 +414,7 @@ const startNewSemester = async (id: string) => {
   });
 
   //handling semesterRegistration is found or not
-  if (!semseterRegistration) {
+  if (!semesterRegistration) {
     throw new ApiError(
       httpStatus.BAD_REQUEST,
       'Semester registration not found'
@@ -418,7 +422,7 @@ const startNewSemester = async (id: string) => {
   }
 
   //checking status of semesterRegistration is "ENDED" or not. only status: ENDED is allowed.
-  if (semseterRegistration.status !== SemesterRegistrationStatus.ENDED) {
+  if (semesterRegistration.status !== SemesterRegistrationStatus.ENDED) {
     throw new ApiError(
       httpStatus.BAD_REQUEST,
       'Semester Registration is not ended yet'
@@ -426,9 +430,9 @@ const startNewSemester = async (id: string) => {
   }
 
   //checking whether semester regisraion is already started or not
-  // if (semseterRegistration.academicSemester.isCurrent) {
-  //   throw new ApiError(httpStatus.BAD_REQUEST, 'Semester is already started');
-  // }
+  if (semesterRegistration.academicSemester.isCurrent) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Semester is already started');
+  }
 
   await prisma.$transaction(async prismaTransactionClient => {
     //making isCurrent value of all academicSemester false [where true]
@@ -444,7 +448,7 @@ const startNewSemester = async (id: string) => {
     //updating academic semester data(with this specific semester Registration)
     await prismaTransactionClient.academicSemester.update({
       where: {
-        id: semseterRegistration.academicSemester.id,
+        id: semesterRegistration.academicSemester.id,
       },
       data: {
         isCurrent: true,
@@ -482,8 +486,7 @@ const startNewSemester = async (id: string) => {
               },
             },
           });
-        // eslint-disable-next-line no-console
-        console.log(studentSemesterRegistrationCourses);
+
         asyncForEach(
           studentSemesterRegistrationCourses,
           async (
@@ -493,15 +496,30 @@ const startNewSemester = async (id: string) => {
               };
             }
           ) => {
-            const enrolledCourseData = {
-              studentId: item.studentId,
-              courseId: item.offeredCourse.courseId,
-              academicSemesterId: semseterRegistration.academicSemesterId,
-            };
+            //finding existing enrolled data
+            const isExistEnrolledData =
+              await prismaTransactionClient.studentEnrolledCourse.findFirst({
+                where: {
+                  student: { id: item.studentId },
+                  course: { id: item.offeredCourse.courseId },
+                  academicSemester: {
+                    id: semesterRegistration.academicSemesterId,
+                  },
+                },
+              });
 
-            await prisma.studentEnrolledCourse.create({
-              data: enrolledCourseData,
-            });
+            //making sure that data not be duplicated
+            if (!isExistEnrolledData) {
+              const enrolledCourseData = {
+                studentId: item.studentId,
+                courseId: item.offeredCourse.courseId,
+                academicSemesterId: semesterRegistration.academicSemesterId,
+              };
+
+              await prisma.studentEnrolledCourse.create({
+                data: enrolledCourseData,
+              });
+            }
           }
         );
       }
