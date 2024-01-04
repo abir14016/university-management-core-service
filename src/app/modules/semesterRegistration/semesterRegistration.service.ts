@@ -393,6 +393,66 @@ const getMyRegistration = async (authUserId: string) => {
   return { semesterRegistration, studentSemesterRegistration };
 };
 
+//service for starting new semester [for admin]
+const startNewSemester = async (id: string) => {
+  //finding semesterRegistration by params id
+  const semseterRegistration = await prisma.semesterRegistration.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      academicSemester: true,
+    },
+  });
+
+  //handling semesterRegistration is found or not
+  if (!semseterRegistration) {
+    throw new ApiError(
+      httpStatus.BAD_REQUEST,
+      'Semester registration not found'
+    );
+  }
+
+  //checking status of semesterRegistration is "ENDED" or not. only status: ENDED is allowed.
+  if (semseterRegistration.status !== SemesterRegistrationStatus.ENDED) {
+    throw new ApiError(
+      httpStatus.BAD_REQUEST,
+      'Semester Registration is not ended yet'
+    );
+  }
+
+  //checking whether semester regisraion is already started or not
+  if (semseterRegistration.academicSemester.isCurrent) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Semester is already started');
+  }
+
+  await prisma.$transaction(async prismaTransactionClient => {
+    //making isCurrent value of all academicSemester false [where true]
+    await prismaTransactionClient.academicSemester.updateMany({
+      where: {
+        isCurrent: true,
+      },
+      data: {
+        isCurrent: false,
+      },
+    });
+
+    //updating academic semester data(with this specific semester Registration)
+    await prismaTransactionClient.academicSemester.update({
+      where: {
+        id: semseterRegistration.academicSemester.id,
+      },
+      data: {
+        isCurrent: true,
+      },
+    });
+  });
+
+  return {
+    message: 'Semester started successfully !',
+  };
+};
+
 export const SemesterRegistrationService = {
   insertIntoDB,
   getAllFromDB,
@@ -404,4 +464,5 @@ export const SemesterRegistrationService = {
   withdrawFromCourse,
   confirmMyRegistration,
   getMyRegistration,
+  startNewSemester,
 };
