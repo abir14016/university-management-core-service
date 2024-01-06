@@ -50,7 +50,7 @@ router.delete(
   SemesterRegistrationController.deleteByIdFromDB
 );
 
-//route for unrolling into a course [for student]
+//route for enrolling into a course [for student]
 router.post(
   '/enroll-into-course',
   validateRequest(SemesterRegistrationValidation.enrollOrWithdrawCourse),
