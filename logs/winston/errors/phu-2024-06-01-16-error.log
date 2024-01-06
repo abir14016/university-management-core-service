@@ -1,0 +1,20 @@
+Sat Jan 06 2024 16:22:13 } [PH] error: 
+Invalid `prisma.studentSemesterPayment.create()` invocation:
+
+
+Transaction API error: Transaction already closed: Could not perform operation.
+Sat Jan 06 2024 16:29:28 } [PH] error: 
+Invalid `prisma.studentSemesterPayment.findFirst()` invocation:
+
+
+Transaction API error: Transaction already closed: Could not perform operation.
+Sat Jan 06 2024 16:35:45 } [PH] error: 
+Invalid `prisma.studentSemesterPayment.findFirst()` invocation:
+
+
+Transaction API error: Transaction already closed: Could not perform operation.
+Sat Jan 06 2024 16:41:16 } [PH] error: 
+Invalid `prisma.studentSemesterPayment.findFirst()` invocation:
+
+
+Transaction API error: Transaction already closed: Could not perform operation.
