@@ -65,10 +65,12 @@ const moduleRoutes = [
     path: '/offered-course-class-schedules',
     route: OfferedCourseClassScheduleRoutes,
   },
+  //may be updated
   {
     path: '/student-enrolled-courses',
     route: StudentEnrolledCourseRoutes,
   },
+  //may be updated
 ];
 
 moduleRoutes.forEach(route => router.use(route.path, route.route));
