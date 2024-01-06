@@ -144,12 +144,14 @@ const getAllFromDB = async (
   };
 };
 
-// const updateStudentMarks = async (payload: any) => {
-//     console.log(payload)
-// }
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const updateStudentMarks = async (payload: any) => {
+  // eslint-disable-next-line no-console
+  console.log(payload);
+};
 
 export const StudentEnrolledCourseMarkService = {
   createStudentEnrolledCourseDefaultMark,
   getAllFromDB,
-  // updateStudentMarks
+  updateStudentMarks,
 };
