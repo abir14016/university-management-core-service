@@ -1,3 +1,4 @@
+//interface
 export type IStudentSemesterPaymentFilterRequest = {
   searchTerm?: string | undefined;
   academicSemesterId?: string | undefined;
