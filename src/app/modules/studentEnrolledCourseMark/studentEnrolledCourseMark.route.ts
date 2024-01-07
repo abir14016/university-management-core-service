@@ -5,15 +5,23 @@ import { StudentEnrolledCourseMarkConroller } from './studentEnrolledCourseMark.
 
 const router = express.Router();
 
+//route for getting studentEnrolledCourseMarks
 router.get(
   '/',
   auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.FACULTY),
   StudentEnrolledCourseMarkConroller.getAllFromDB
 );
 
+//route for updating student result
 router.patch(
   '/update-marks',
   StudentEnrolledCourseMarkConroller.updateStudentMarks
+);
+
+//route for updating final result
+router.patch(
+  '/update-final-marks',
+  StudentEnrolledCourseMarkConroller.updateFinalMarks
 );
 
 export const StudentEnrolledCourseMarkRoutes = router;
