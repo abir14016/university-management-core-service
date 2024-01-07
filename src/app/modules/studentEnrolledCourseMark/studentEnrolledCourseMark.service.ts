@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   ExamType,
   PrismaClient,
@@ -7,11 +8,14 @@ import {
   DefaultArgs,
   PrismaClientOptions,
 } from '@prisma/client/runtime/library';
+import httpStatus from 'http-status';
+import ApiError from '../../../errors/ApiError';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import prisma from '../../../shared/prisma';
 import { IStudentEnrolledCourseMarkFilterRequest } from './studentEnrolledCourseMark.interface';
+import { StudentEnrolledCourseMarkUtils } from './studentEnrolledCourseMark.utils';
 
 //service for creating studentEnrolledCOurseMark
 const createStudentEnrolledCourseDefaultMark = async (
@@ -144,10 +148,49 @@ const getAllFromDB = async (
   };
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+//service for updating studentEnrolledCourseMark
 const updateStudentMarks = async (payload: any) => {
-  // eslint-disable-next-line no-console
-  console.log(payload);
+  const { studentId, academicSemesterId, courseId, examType, marks } = payload;
+
+  //finding existing record in 'studentEnrolledCourse' table with provided data
+  const studentEnrolledCourseMarks =
+    await prisma.studentEnrolledCourseMark.findFirst({
+      where: {
+        student: {
+          id: studentId,
+        },
+        academicSemester: {
+          id: academicSemesterId,
+        },
+        studentEnrolledCourse: {
+          course: {
+            id: courseId,
+          },
+        },
+        examType,
+      },
+    });
+
+  //if not exists, throw an error
+  if (!studentEnrolledCourseMarks) {
+    throw new ApiError(
+      httpStatus.BAD_REQUEST,
+      'Student enrolled course mark not found!'
+    );
+  }
+  const result = StudentEnrolledCourseMarkUtils.getGradeFromMarks(marks);
+
+  const updateStudentMarks = await prisma.studentEnrolledCourseMark.update({
+    where: {
+      id: studentEnrolledCourseMarks.id,
+    },
+    data: {
+      marks,
+      grade: result.grade,
+    },
+  });
+
+  return updateStudentMarks;
 };
 
 export const StudentEnrolledCourseMarkService = {
