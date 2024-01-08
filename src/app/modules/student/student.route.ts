@@ -17,6 +17,13 @@ router.post(
 // route for retriving all students with pagination, searching, filtering and sorting
 router.get('/', StudentController.getAllFromDB);
 
+//route for retriving student's course data
+router.get(
+  '/my-courses',
+  auth(ENUM_USER_ROLE.STUDENT),
+  StudentController.myCourses
+);
+
 // route for retriving single student from DB
 router.get('/:id', StudentController.getByIdFromDB);
 
