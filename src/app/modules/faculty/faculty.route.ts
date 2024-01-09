@@ -17,6 +17,13 @@ router.post(
 // route for getting all faculties with pagination, searching, filtering and sorting
 router.get('/', FacultyController.getAllFromDB);
 
+//route for retriving course data for a faculty
+router.get(
+  '/my-courses',
+  auth(ENUM_USER_ROLE.FACULTY),
+  FacultyController.myCourses
+);
+
 // route for getting single faculty by id
 router.get('/:id', FacultyController.getByIdFromDB);
 

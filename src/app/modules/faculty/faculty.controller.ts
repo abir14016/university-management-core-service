@@ -96,7 +96,6 @@ const removeCourses = catchAsync(async (req: Request, res: Response) => {
 //controller for retriving course data for a faculty
 const myCourses = catchAsync(async (req: Request, res: Response) => {
   const user = (req as any).user;
-  // console.log(user);
   const filter = pick(req.query, ['academicSemesterId', 'courseId']);
   const result = await FacultyService.myCourses(user, filter);
   sendResponse(res, {
