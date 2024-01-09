@@ -31,6 +31,13 @@ router.get(
   StudentController.getMyCourseSchedules
 );
 
+//route for obtaining student's academic information
+router.get(
+  '/my-academic-info',
+  auth(ENUM_USER_ROLE.STUDENT),
+  StudentController.myAcademicInfo
+);
+
 // route for retriving single student from DB
 router.get('/:id', StudentController.getByIdFromDB);
 
