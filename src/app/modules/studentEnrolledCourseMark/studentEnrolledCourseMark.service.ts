@@ -331,48 +331,48 @@ const getMyCourseMarks = async (
   options: IPaginationOptions,
   authUser: any
 ): Promise<IGenericResponse<StudentEnrolledCourseMark[]>> => {
-  const { limit, page, } = paginationHelpers.calculatePagination(options);
+  const { limit, page } = paginationHelpers.calculatePagination(options);
 
   const student = await prisma.student.findFirst({
-      where: {
-          studentId: authUser.id
-      }
+    where: {
+      studentId: authUser.id,
+    },
   });
 
   if (!student) {
-      throw new ApiError(httpStatus.NOT_FOUND, 'Student not found');
+    throw new ApiError(httpStatus.NOT_FOUND, 'Student not found');
   }
 
   const marks = await prisma.studentEnrolledCourseMark.findMany({
-      where: {
-          student: {
-              id: student.id
-          },
-          academicSemester: {
-              id: filters.academicSemesterId
-          },
-          studentEnrolledCourse: {
-              course: {
-                  id: filters.courseId
-              }
-          }
+    where: {
+      student: {
+        id: student.id,
       },
-      include: {
-          studentEnrolledCourse: {
-              include: {
-                  course: true
-              }
-          }
-      }
+      academicSemester: {
+        id: filters.academicSemesterId,
+      },
+      studentEnrolledCourse: {
+        course: {
+          id: filters.courseId,
+        },
+      },
+    },
+    include: {
+      studentEnrolledCourse: {
+        include: {
+          course: true,
+        },
+      },
+    },
   });
 
   return {
-      meta: {
-          total: marks.length,
-          page,
-          limit
-      },
-      data: marks
+    meta: {
+      total: marks.length,
+      page,
+      limit,
+    },
+    data: marks,
   };
 };
 
@@ -381,5 +381,5 @@ export const StudentEnrolledCourseMarkService = {
   getAllFromDB,
   updateStudentMarks,
   updateFinalMarks,
-  getMyCourseMarks
+  getMyCourseMarks,
 };

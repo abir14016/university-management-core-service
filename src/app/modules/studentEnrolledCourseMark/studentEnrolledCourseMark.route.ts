@@ -12,6 +12,13 @@ router.get(
   StudentEnrolledCourseMarkConroller.getAllFromDB
 );
 
+// route for retriving student's course marks for the specified academic semester and course
+router.get(
+  '/my-marks',
+  auth(ENUM_USER_ROLE.STUDENT),
+  StudentEnrolledCourseMarkConroller.getMyCourseMarks
+);
+
 //route for updating student result
 router.patch(
   '/update-marks',
