@@ -24,6 +24,13 @@ router.get(
   FacultyController.myCourses
 );
 
+//route for retrieve list of students enrolled in your course for a specific academic semester and course section [for faculty]
+router.get(
+  '/my-course-students',
+  auth(ENUM_USER_ROLE.FACULTY),
+  FacultyController.getMyCourseStudents
+);
+
 // route for getting single faculty by id
 router.get('/:id', FacultyController.getByIdFromDB);
 
