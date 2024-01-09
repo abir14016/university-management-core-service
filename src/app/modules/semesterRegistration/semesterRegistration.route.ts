@@ -14,6 +14,13 @@ router.get(
   SemesterRegistrationController.getMyRegistration
 );
 
+//route for accessing student semester registration courses
+router.get(
+  '/get-my-semsester-courses',
+  auth(ENUM_USER_ROLE.STUDENT),
+  SemesterRegistrationController.getMySemesterRegCouses
+);
+
 //route for creating semester registration
 router.post(
   '/',
