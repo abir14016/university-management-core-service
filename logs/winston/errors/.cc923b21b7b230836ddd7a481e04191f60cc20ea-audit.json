@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "C:\\PROGRAMMING HERO\\NEXT-LEVEL\\SQL-SUPERSTAR\\university-management-core-service\\logs\\winston\\errors\\.cc923b21b7b230836ddd7a481e04191f60cc20ea-audit.json",
+    "files": [
+        {
+            "date": 1705058210930,
+            "name": "C:\\PROGRAMMING HERO\\NEXT-LEVEL\\SQL-SUPERSTAR\\university-management-core-service\\logs\\winston\\errors\\UM-2024-12-01-17-error.log",
+            "hash": "cb1015694a9a434bc4f82a6872fff8b389a32004d685c934819f2eb02d6409de"
+        }
+    ],
+    "hashType": "sha256"
+}
